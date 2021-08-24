@@ -8,11 +8,19 @@ from clip_image_search import CLIPFeatureExtractor, Searcher
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
+
 feature_extractor = CLIPFeatureExtractor()
-searcher = Searcher()
 
 
 def lambda_handler(event, context):
+    for key in ("input_type", "query"):
+        if key not in event:
+            logger.error(f"Key '{key}' not found in event.")
+            return {
+                "status_code": 400,
+                "message": "Missing input.",
+            }
+
     try:
         input_type = event["input_type"]
         if input_type == "text":
@@ -32,6 +40,7 @@ def lambda_handler(event, context):
         }
 
     try:
+        searcher = Searcher()
         start = time.time()
         response = searcher.knn_search(query_features[0])
         end = time.time()
