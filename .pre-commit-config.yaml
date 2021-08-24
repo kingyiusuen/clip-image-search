@@ -1,0 +1,41 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+    -   id: trailing-whitespace
+    -   id: check-ast
+    -   id: check-json
+    -   id: check-yaml
+    -   id: check-added-large-files
+        args: ["--maxkb=4096"]
+-   repo: https://github.com/psf/black
+    rev: 21.7b0
+    hooks:
+    -   id: black
+        args: []
+        files: .
+-   repo: https://github.com/PyCQA/flake8
+    rev: 3.9.2
+    hooks:
+    -   id: flake8
+        args: []
+        files: handwritten_multi_digit_number_recognition
+-   repo: https://github.com/PyCQA/isort
+    rev: 5.9.3
+    hooks:
+    -   id: isort
+        args: []
+        files: .
+-   repo: https://github.com/asottile/pyupgrade
+    rev: v2.24.0
+    hooks:
+    -   id: pyupgrade
+        args: [--py36-plus]
+-   repo: local
+    hooks:
+    -   id: clean
+        name: clean
+        entry: make
+        args: ["clean"]
+        language: system
+        pass_filenames: false
