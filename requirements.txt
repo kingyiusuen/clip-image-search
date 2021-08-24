@@ -4,7 +4,6 @@ pillow==8.3.1
 smart-open==5.2.0
 elasticsearch==7.13.4
 boto3==1.18.26
-requests-aws4auth==1.1.1
 streamlit==0.87.0
 pandas==1.3.2
 tqdm==4.62.1

@@ -1,29 +1,10 @@
 import boto3
 from elasticsearch import Elasticsearch, RequestsHttpConnection
 from elasticsearch.helpers import bulk
-from requests_aws4auth import AWS4Auth
 
 
 class Searcher:
     def __init__(self, region="us-east-1"):
-        # credentials = boto3.Session().get_credentials()
-        # awsauth = AWS4Auth(
-        #    credentials.access_key,
-        #    credentials.secret_key,
-        #    region,
-        #    "es",
-        #    session_token=credentials.token,
-        # )
-        # ssm = boto3.client("ssm", region_name=region)
-        # es_parameter = ssm.get_parameter(Name="/image_search/es_endpoint")
-        # es_host = es_parameter["Parameter"]["Value"]
-        # self.client = Elasticsearch(
-        #    hosts=[f"{es_host}:443"],
-        #    http_auth=awsauth,
-        #    use_ssl=True,
-        #    verify_certs=True,
-        #    connection_class=RequestsHttpConnection,
-        # )
         ssm = boto3.client("ssm", region_name=region)
         path = "/clip_image_search"
         es_endpoint = ssm.get_parameter(Name=f"{path}/es_endpoint")["Parameter"]["Value"]
