@@ -45,4 +45,4 @@ jobs:
         region: us-east-1
         image: clip-image-search:latest
     - name: Update lambda with image
-      run: aws lambda update-function-code --function-name clip-image-search --image-uri 250854891162.dkr.ecr.us-east-1.amazonaws.com/clip-image-search:latest
+      run: aws lambda update-function-code --function-name search-image --image-uri 250854891162.dkr.ecr.us-east-1.amazonaws.com/clip-image-search:latest
