@@ -1,5 +1,4 @@
 import logging
-import time
 
 import clip_image_search.utils as utils
 from clip_image_search import CLIPFeatureExtractor, Searcher
@@ -41,11 +40,7 @@ def lambda_handler(event, context):
 
     try:
         searcher = Searcher()
-        start = time.time()
-        response = searcher.knn_search(query_features[0])
-        end = time.time()
-        time_elapsed = end - start
-        logger.info(f"Search completed in {time_elapsed}s.")
+        response = searcher.knn_search(query_features[0], k=10)
         results = response["hits"]["hits"]
         return {
             "status_code": 200,

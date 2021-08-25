@@ -40,7 +40,7 @@ class Searcher:
     def bulk_ingest(self, generate_data, chunk_size=128):
         return bulk(self.client, generate_data, chunk_size=chunk_size)
 
-    def knn_search(self, query_features, k=8):
+    def knn_search(self, query_features, k=10):
         body = {
             "size": k,
             "_source": {
