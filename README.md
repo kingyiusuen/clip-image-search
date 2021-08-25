@@ -1,5 +1,11 @@
 # Image Search using CLIP
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/kingyiusuen/clip-image-search/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/kingyiusuen/clip-image-search/blob/master/.pre-commit-config.yaml)
+![CI/CD pipeline](https://github.com/kingyiusuen/clip-image-search/actions/workflows/pipeline.yaml/badge.svg)
+[![License](https://img.shields.io/github/license/kingyiusuen/clip-image-search)](https://github.com/kingyiusuen/clip-image-search/blob/master/LICENSE)
+
 Retrieve images based on a query (text or image), using Open AI's pretrained CLIP model. Check out the [web demo](https://share.streamlit.io/kingyiusuen/clip-image-search/).
 
 Text as query.
