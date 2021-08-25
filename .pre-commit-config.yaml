@@ -19,7 +19,7 @@ repos:
     hooks:
     -   id: flake8
         args: []
-        files: handwritten_multi_digit_number_recognition
+        files: .
 -   repo: https://github.com/PyCQA/isort
     rev: 5.9.3
     hooks:
