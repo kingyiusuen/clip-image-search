@@ -1,9 +1,9 @@
 import json
 
 import requests
+import streamlit as st
 
 import clip_image_search.utils as utils
-import streamlit as st
 
 
 intro = """
@@ -16,7 +16,7 @@ The algorithm will return the ten most relevant images.
 """
 
 
-def handle_query(query, input_type, max_attempts=2):
+def handle_query(query, input_type, max_attempts=3):
     if not query:
         st.sidebar.error("Please enter a query.")
         return
@@ -24,8 +24,12 @@ def handle_query(query, input_type, max_attempts=2):
     if input_type == "image":
         st.sidebar.image(query)
 
-    with st.spinner("Wait for it..."):
-        for _ in range(max_attempts):
+    for i in range(max_attempts):
+        if i == 0:
+            message = "Wait for it..."
+        else:
+            message = "The server needs some time to warm up..."
+        with st.spinner(message):
             response = make_post_request(query, input_type)
             if response.status_code != 503:
                 break
