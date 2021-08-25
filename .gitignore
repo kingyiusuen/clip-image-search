@@ -26,5 +26,4 @@ venv
 
 # Misc
 .DS_Store
-artifacts
-models
+/figures
