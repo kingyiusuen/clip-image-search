@@ -15,6 +15,7 @@ dev_packages = [
     "flake8",
     "isort",
     "mypy",
+    "pytest",
 ]
 
 

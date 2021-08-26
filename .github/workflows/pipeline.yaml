@@ -15,9 +15,11 @@ jobs:
       with:
         python-version: 3.8
     - name: Install dependencies
-      run: pip install flake8
+      run: pip install -e ".[dev]" --no-cache-dir
     - name: Linting
       run: flake8 .
+    - name: Run tests
+      run: pytest .
 
   deployment:
     needs: [integration]
