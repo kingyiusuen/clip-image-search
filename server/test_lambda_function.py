@@ -1,4 +1,5 @@
 import pytest
+
 from lambda_function import lambda_handler
 
 
@@ -16,8 +17,15 @@ def test_text_input(event):
 
 
 @pytest.mark.parametrize(
-    "event", [{}, {"input_type": "text"}, {"query": "two cats"}, {"input_type": "language", "query": "two cats"}]
+    "event",
+    [
+        {},
+        {"input_type": "text"},
+        {"query": "two cats"},
+        {"input_type": "language", "query": "two cats"},
+        {"input_type": "image", "query": "this_url_does_not_exist"},
+    ],
 )
-def test_missing_keys_and_unrecognized_input_type(event):
+def test_invalid_inputs(event):
     response = lambda_handler(event, None)
     assert response["status_code"] == 400
