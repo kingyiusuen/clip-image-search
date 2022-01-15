@@ -6,7 +6,7 @@
 ![CI/CD pipeline](https://github.com/kingyiusuen/clip-image-search/actions/workflows/pipeline.yaml/badge.svg)
 [![License](https://img.shields.io/github/license/kingyiusuen/clip-image-search)](https://github.com/kingyiusuen/clip-image-search/blob/master/LICENSE)
 
-Retrieve images based on a query (text or image), using Open AI's pretrained CLIP model. Check out the [web demo](https://share.streamlit.io/kingyiusuen/clip-image-search/).
+Retrieve images based on a query (text or image), using Open AI's pretrained CLIP model.
 
 Text as query.
 
@@ -26,9 +26,9 @@ Extending the work in this [repository](https://github.com/haltakov/natural-lang
 
 1. Use the image encoder to compute the feature vector of the images in the dataset.
 2. Index the images in the following format:
-    ```
-    image_id: {"url": https://abc.com/xyz, "feature_vector": [0.1, 0.3, ..., 0.2]}
-    ```
+   ```
+   image_id: {"url": https://abc.com/xyz, "feature_vector": [0.1, 0.3, ..., 0.2]}
+   ```
 3. Compute the feature vector of the query. (Use text encoder if query is text. Use image encoder if query is image.)
 4. Compute the cosine similarities between the feature vector of the query and the feature vector of the images in the dataset.
 5. Return $k$ images that have the highest similarity.
@@ -38,8 +38,6 @@ I used the lite version of the [Unsplash dataset](https://github.com/unsplash/da
 ## Possible Improvements
 
 - The feature vector outputted by CLIP is a 32-bit floating point vector with 512 dimensions. To reduce storage cost and increase query speed, we may consider using a dimension reduction technique such as PCA to reduce the number of features. If we want to scale the system to billions of images, we may even consider binarizing the features, [as is done in Pinterest](https://arxiv.org/pdf/1702.04680.pdf).
-
-- After a period of inactivity, the Lambda function will suffer from a phenomenon known as [cold start](https://mikhail.io/serverless/coldstarts/aws/). Combined with the facts that API Gateway has a hard limit of 30 seconds for Lambda integration, and that loading a large model like CLIP takes time, an "Endpoint request timed out" error may occur, if the Lambda function becomes inactive. I tried to migitated the problem by shrinking the Docker image size (e.g., using separate requirements.txt for production and development, and installing a CPU-only version of PyTorch), but it doesn't completely eliminate the problem. My workaround so far is just to retry the request if a 504 Gateway Timeout error is returned.
 
 ## How to Use
 
